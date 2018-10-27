@@ -436,6 +436,12 @@ namespace CoolCompilerCSharp.Lexer
                     Regex = new Regex(@"\=\>"),
                     CreateToken = s => { return new DoubleArrowToken(); }
                 },
+                new Rule
+                {
+                    State = new LexState[]{ },
+                    Regex = new Regex(@".|\n"),
+                    CreateToken = s => new ErrorToken("unhandled char "+ s)
+                }
             };
         }
     }

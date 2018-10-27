@@ -49,7 +49,12 @@ namespace CoolCompilerCSharp.Lexer
                     .Where(x => x != null)
                     .OrderByDescending(match => match.Value.Length)
                     .First();
-                result.Add( tokenMatch.Rule.CreateToken(tokenMatch.Value));
+                var token = tokenMatch.Rule.CreateToken(tokenMatch.Value);
+                if(token!= null)
+                {
+                    token.Line = LineNr;
+                }
+                result.Add( token );
                 file = file.Substring(tokenMatch.Value.Length);
 
             }
